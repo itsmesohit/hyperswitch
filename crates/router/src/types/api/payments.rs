@@ -118,7 +118,8 @@ impl MandateValidationFieldsExt for MandateValidationFields {
             (None, None) => Ok(None),
             (Some(_), Some(_)) => Err(errors::ValidationError::InvalidValue {
                 message: "Expected one out of mandate_id and mandate_data but got both".to_string(),
-            }),
+            }
+            .into()),
             (_, Some(_)) => Ok(Some(MandateTransactionType::RecurringMandateTransaction)),
             (Some(_), _) => Ok(Some(MandateTransactionType::NewMandateTransaction)),
         }
